@@ -10,7 +10,7 @@ var seq = require('run-sequence');
 var options = {
     debug:true,
     entries:[
-        './index.js'
+        './src/index.js'
     ]
 };
 
