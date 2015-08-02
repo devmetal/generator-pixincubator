@@ -6,7 +6,6 @@ var babelify = require('babelify');
 var browserSync = require('browser-sync').create();
 var less = require('gulp-less');
 var seq = require('run-sequence');
-var Notification = require('node-notifier');
 var util = require('gulp-util');
 
 var options = {
