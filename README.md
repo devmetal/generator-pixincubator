@@ -7,7 +7,7 @@ Basic generator project for pixijs developers. This generator make able to creat
 Install
 -------
 ```bash
-npm install -g yo gulp
+npm install -g yo gulp generator-pixincubator
 ```
 
 Using
