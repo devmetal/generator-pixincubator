@@ -2,7 +2,7 @@
 
 Pixi yeoman generator
 =====================
-Basic generator project for pixijs developers. This generator make able to create pixijs projects with CommonJs module loader working with browserify and babelify.
+Basic generator project for pixijs developers. This generator allows to create pixijs projects wich use browserify and babelify (because of es6).
 
 Install
 -------
@@ -19,9 +19,9 @@ cd my-app
 gulp
 ```
 ### The gulp will do
-* Build the less and browserify the commonjs modules according to app
-* Start the BrowserSync with the public folder
-* Start watching the app js files and the less files
+* Build the less and browserify the app.
+* Start the BrowserSync with the files from the public folder
+* Start watching the apps js files and the less files
 
 Scaffolding
 -----------
