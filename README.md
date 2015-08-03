@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/devmetal/generator-pixincubator.svg?branch=master)](https://travis-ci.org/devmetal/generator-pixincubator)
+
 Pixi yeoman generator
 =====================
 Basic generator project for pixijs developers. This generator make able to create pixijs projects with CommonJs module loader working with browserify and babelify.
