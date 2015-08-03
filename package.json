@@ -1,9 +1,18 @@
 {
   "name": "generator-pixincubator",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description":"Using pixijs with browserify.",
+  "license": "MIT",
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/devmetal/generator-pixincubator.git"
+  },
   "dependencies": {
     "lodash": "^3.10.0",
     "yeoman-generator": "^0.20.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
   },
   "files": [
     "app"
@@ -11,9 +20,6 @@
   "keywords": [
     "yeoman-generator"
   ],
-  "devDependencies": {
-    "mocha": "^2.2.5"
-  },
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   }
