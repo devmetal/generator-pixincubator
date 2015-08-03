@@ -1,11 +1,11 @@
 {
   "name": "generator-pixincubator",
-  "version": "1.0.0",
-  "description":"Using pixijs with browserify.",
+  "version": "1.0.1",
+  "description": "Using pixijs with browserify.",
   "license": "MIT",
-  "repository" : { 
-    "type" : "git", 
-    "url" : "https://github.com/devmetal/generator-pixincubator.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devmetal/generator-pixincubator.git"
   },
   "dependencies": {
     "lodash": "^3.10.0",
