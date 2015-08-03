@@ -23,7 +23,6 @@ gulp.task('browser-sync', function() {
     });
 });
 
-
 gulp.task('js', function(){
     return browserify(options)
         .transform(babelify)
