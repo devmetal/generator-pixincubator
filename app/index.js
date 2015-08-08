@@ -62,10 +62,22 @@ var copyPackageJson = function() {
 
 module.exports = generators.Base.extend({
 	
+	initAddonByOption: function(name) {
+		this.addons = this.addons || [];
+		this.option(name);
+		if (this.options[name]) {
+			this.addons.push(name);
+		}
+	},
+	
 	constructor: function() {
 		generators.Base.apply(this, arguments);
+		
 		this.argument('appname', {type:String, required:true});
 		this.appname = _.escape(this.appname);
+		
+		this.initAddonByOption('howler');
+		this.initAddonByOption('socketio');
 	},
 	
 	writing: function() {
