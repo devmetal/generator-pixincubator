@@ -109,7 +109,7 @@ module.exports = generators.Base.extend({
 		
 		var self = this;
 		this.addons.forEach(function(addon){
-			var npmPackage = definedAddons[addon];
+			var npmPackage = definedAddons[addon]['package'];
 			if (_.isArray(npmPackage)) {
 				self.npmInstall(npmPackage, {'save':true});
 			} else {

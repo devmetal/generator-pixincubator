@@ -42,8 +42,16 @@ describe('pixincubator', function(){
 	describe('when craete a new app with addons', function(){
 		before(function(done){
 			helpers.run(path.join(__dirname, '../app'))
-				.withArguments(['app-name', '-howler', '-socketio'])
+				.withArguments(['app-name'])
+				.withOptions({
+					'howler':true,
+					'socketio':true
+				})
 				.on('end', done);
+		});
+		
+		after(function(){
+			
 		});
 		
 		it('installed howler package', function(){
