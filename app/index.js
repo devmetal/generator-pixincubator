@@ -58,6 +58,18 @@ var copyPackageJson = function() {
 		this.destinationPath('package.json'),
 		{appName: this.appname}
 	)
+};
+
+var definedAddons = {
+	socketio:{
+		'package':[
+			'socket.io',
+			'socket.io-client'
+		]
+	},
+	howler:{
+		'package':'howler'
+	}
 }
 
 module.exports = generators.Base.extend({
@@ -94,5 +106,15 @@ module.exports = generators.Base.extend({
 	
 	install: function() {
 		this.npmInstall();
+		
+		var self = this;
+		this.addons.forEach(function(addon){
+			var npmPackage = definedAddons[addon];
+			if (_.isArray(npmPackage)) {
+				self.npmInstall(npmPackage, {'save':true});
+			} else {
+				self.npmInstall([npmPackage], {'save':true});	
+			}
+		});
 	}
 });

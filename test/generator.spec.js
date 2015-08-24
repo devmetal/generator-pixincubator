@@ -12,7 +12,6 @@ describe('pixincubator', function(){
 		
 		it('generated a package.json', function(){
 			assert.file(['package.json']);
-			
 		});
 		
 		it('package.json contains app-name', function(){
@@ -37,6 +36,31 @@ describe('pixincubator', function(){
 		
 		it('created browserify shim file', function(){
 			assert.file(['shim.js']);
+		});
+	});
+	
+	describe('when craete a new app with addons', function(){
+		before(function(done){
+			helpers.run(path.join(__dirname, '../app'))
+				.withArguments(['app-name', '-howler', '-socketio'])
+				.on('end', done);
+		});
+		
+		it('installed howler package', function(){
+			assert.fileContent('package.json', /howler/ig);
+		});
+		
+		it('installed socketio and client', function(){
+			assert.fileContent('package.json', /socket.io/ig);
+			assert.fileContent('package.json', /socket.io-client/ig);
+		});
+		
+		it('created app with howler example', function(){
+			
+		});
+		
+		it('created app with socketio example', function(){
+			
 		});
 	});
 });
