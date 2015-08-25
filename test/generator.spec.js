@@ -1,6 +1,7 @@
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
 var path = require('path');
+var expect = require('chai').expect;
 
 describe('pixincubator', function(){
 	describe('when create a new app', function(){
@@ -39,36 +40,50 @@ describe('pixincubator', function(){
 		});
 	});
 	
-	describe('when craete a new app with addons', function(){
-		before(function(done){
-			helpers.run(path.join(__dirname, '../app'))
-				.withArguments(['app-name'])
-				.withOptions({
-					'howler':true,
-					'socketio':true
-				})
-				.on('end', done);
+	describe('Addons npmInstall test', function(){	
+		beforeEach(function(done){
+			helpers.testDirectory(path.join(__dirname, 'tmp'), function(err){
+				if (err) {
+					done(err);
+					return;
+				}
+				
+				this.app = helpers.createGenerator('pixincubator', [
+					'../../app'
+				], 'app-name');
+				
+				this.npmCalls = [];
+				
+				this.app.npmInstall = function() {
+					this.npmCalls.push(arguments);
+				}.bind(this);
+				
+				done();
+			}.bind(this));
 		});
 		
-		after(function(){
+		it('install howler addon', function(done) {
+			helpers.mockPrompt(this.app, {
+				howler:'y'
+			});
 			
+			this.app.run(function(){
+				expect(this.npmCalls[0][0]).to.deep.equal(['howler']);
+				expect(this.npmCalls[0][1]).to.deep.equal({'save':true});
+				done();
+			}.bind(this));
 		});
 		
-		it('installed howler package', function(){
-			assert.fileContent('package.json', /howler/ig);
-		});
-		
-		it('installed socketio and client', function(){
-			assert.fileContent('package.json', /socket.io/ig);
-			assert.fileContent('package.json', /socket.io-client/ig);
-		});
-		
-		it('created app with howler example', function(){
+		it('install socketio addon', function(done) {
+			helpers.mockPrompt(this.app, {
+				socketio:'y'
+			});
 			
-		});
-		
-		it('created app with socketio example', function(){
-			
+			this.app.run(function(){
+				expect(this.npmCalls[0][0]).to.deep.equal(['socket.io', 'socket.io-client']);
+				expect(this.npmCalls[0][1]).to.deep.equal({'save':true});
+				done();
+			}.bind(this));
 		});
 	});
 });

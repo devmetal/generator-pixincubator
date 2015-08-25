@@ -74,22 +74,40 @@ var definedAddons = {
 
 module.exports = generators.Base.extend({
 	
-	initAddonByOption: function(name) {
-		this.addons = this.addons || [];
-		this.option(name);
-		if (this.options[name]) {
-			this.addons.push(name);
-		}
-	},
-	
 	constructor: function() {
 		generators.Base.apply(this, arguments);
 		
 		this.argument('appname', {type:String, required:true});
 		this.appname = _.escape(this.appname);
+		this.addons = [];
+	},
+	
+	prompting: function() {
+		var keys = Object.keys(definedAddons);
 		
-		this.initAddonByOption('howler');
-		this.initAddonByOption('socketio');
+		var prompts = keys.map(function(addon){
+			return {
+				type:'input',
+				name:addon,
+				message:'Would you like use the ' + addon + ' addon (y\n)',
+				default:'n'
+			}
+		});
+		
+		var done = this.async();
+		this.prompt(prompts, function(answers){
+			keys = Object.keys(answers);
+			
+			keys.forEach(function(addon){
+				var answer = answers[addon];
+				if (answer === 'y' || answer === 'Y') {
+					this.addons.push(addon);
+				}
+			}.bind(this));
+			
+			done();
+			
+		}.bind(this));
 	},
 	
 	writing: function() {
@@ -104,10 +122,9 @@ module.exports = generators.Base.extend({
 		copyPackageJson.apply(this);
 	},
 	
-	install: function() {
-		this.npmInstall();
-		
+	install: function() {		
 		var self = this;
+		
 		this.addons.forEach(function(addon){
 			var npmPackage = definedAddons[addon]['package'];
 			if (_.isArray(npmPackage)) {
@@ -116,5 +133,7 @@ module.exports = generators.Base.extend({
 				self.npmInstall([npmPackage], {'save':true});	
 			}
 		});
+		
+		this.npmInstall();
 	}
 });
