@@ -1,1 +1,1 @@
-require('./app/Droid.js');
+require('./app/HelloPixi.js');

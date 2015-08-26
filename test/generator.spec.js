@@ -4,7 +4,7 @@ var path = require('path');
 var expect = require('chai').expect;
 
 describe('pixincubator', function(){
-	describe('when create a new app', function(){
+	describe('create a new app', function(){
 		before(function(done){
 			helpers.run(path.join(__dirname, '../app'))
 				.withArguments(['app-name'])
@@ -24,11 +24,11 @@ describe('pixincubator', function(){
 		});
 		
 		it('created app files', function(){
-			assert.file(['src/index.js', 'src/app/Droid.js']);
+			assert.file(['src/index.js', 'src/app/HelloPixi.js']);
 		});
 		
 		it('created public files', function(){
-			assert.file(['public/index.html', 'public/assets/android_icon.png', 'public/vendor/pixi.min.js']);
+			assert.file(['public/index.html', 'public/vendor/pixi.min.js']);
 		});
 		
 		it('created less file', function(){
@@ -40,7 +40,15 @@ describe('pixincubator', function(){
 		});
 	});
 	
-	describe('Addons npmInstall test', function(){	
+	describe('create app with howler addon', function(){
+		before(function(done){
+			helpers.run(path.join(__dirname, '../app'))
+				.withArguments(['app-name'])
+				.on('end', done);
+		});
+	});
+	
+	describe('addons npmInstall test', function(){	
 		beforeEach(function(done){
 			helpers.testDirectory(path.join(__dirname, 'tmp'), function(err){
 				if (err) {

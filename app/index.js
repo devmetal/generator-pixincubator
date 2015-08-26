@@ -8,8 +8,8 @@ var copyAppFiles = function() {
 	);
 	
 	this.fs.copy(
-		this.templatePath('app/Droid.js'),
-		this.destinationPath('src/app/Droid.js')
+		this.templatePath('app/HelloPixi.js'),
+		this.destinationPath('src/app/HelloPixi.js')
 	);
 };
 
@@ -32,11 +32,6 @@ var copyPublicFiles = function() {
 		this.templatePath('public/index.html'),
 		this.destinationPath('public/index.html'),
 		{title: this.appname}
-	);
-	
-	this.fs.copy(
-		this.templatePath('public/assets/android_icon.png'),
-		this.destinationPath('public/assets/android_icon.png')
 	);
 	
 	this.fs.copy(
