@@ -1,3 +1,5 @@
+'use strict';
+
 let PIXI = require('pixi');
 
 let renderer = new PIXI.WebGLRenderer(800, 600, {backgroundColor:0xE2F0D6});

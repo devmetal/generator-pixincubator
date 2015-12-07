@@ -25,7 +25,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('js', function(){
     return browserify(options)
-        .transform(babelify)
+        .transform(babelify, {presets: ["es2015"]})
         .bundle()
         .on('error', function(err) {
             util.log(util.colors.red('Error'), err.message);
