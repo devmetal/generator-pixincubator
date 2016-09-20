@@ -38,18 +38,6 @@ var copyPublicFiles = function() {
 		this.templatePath('public/assets/android_icon.png'),
 		this.destinationPath('public/assets/android_icon.png')
 	);
-	
-	this.fs.copy(
-		this.templatePath('public/vendor/pixi.min.js'),
-		this.destinationPath('public/vendor/pixi.min.js')
-	);	
-};
-
-var copyShim = function() {
-	this.fs.copy(
-		this.templatePath('shim.js'),
-		this.destinationPath('shim.js')
-	);
 };
 
 var copyPackageJson = function() {
@@ -69,13 +57,11 @@ module.exports = generators.Base.extend({
 	},
 	
 	writing: function() {
-		
 		this.destinationRoot('./' + this.appname);
 		
 		copyAppFiles.apply(this);
 		copyLessFile.apply(this);
 		copyPublicFiles.apply(this);
-		copyShim.apply(this);
 		copyGulpFile.apply(this);
 		copyPackageJson.apply(this);
 	},

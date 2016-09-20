@@ -1,6 +1,6 @@
 {
   "name": "generator-pixincubator",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Using pixijs with browserify.",
   "license": "MIT",
   "repository": {

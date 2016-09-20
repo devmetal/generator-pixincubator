@@ -12,7 +12,6 @@ describe('pixincubator', function(){
 		
 		it('generated a package.json', function(){
 			assert.file(['package.json']);
-			
 		});
 		
 		it('package.json contains app-name', function(){
@@ -28,15 +27,11 @@ describe('pixincubator', function(){
 		});
 		
 		it('created public files', function(){
-			assert.file(['public/index.html', 'public/assets/android_icon.png', 'public/vendor/pixi.min.js']);
+			assert.file(['public/index.html', 'public/assets/android_icon.png']);
 		});
 		
 		it('created less file', function(){
 			assert.file(['src/less/main.less']);
-		});
-		
-		it('created browserify shim file', function(){
-			assert.file(['shim.js']);
 		});
 	});
 });
